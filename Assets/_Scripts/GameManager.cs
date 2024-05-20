@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Scenes")]
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject settings;
 
     //Singleton.
     private AudioManager _audioManager;
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DelayWaitingRoom()
     {
-        _audioManager.ButtonSound.Play();
+        _audioManager.ButtonSFX.Play();
         yield return new WaitForSeconds(timeBeforeLoad);
 
         mainMenu.SetActive(false);
@@ -58,10 +59,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DelaySettings()
     {
-        _audioManager.ButtonSound.Play();
+        _audioManager.ButtonSFX.Play();
         yield return new WaitForSeconds(timeBeforeLoad);
 
         mainMenu.SetActive(false);
+        settings.SetActive(true);
+        _audioManager.GlitchSFX.Stop();
     }
 
     /**
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DelayExitGame()
     {
-        _audioManager.ButtonSound.Play();
+        _audioManager.ButtonSFX.Play();
         yield return new WaitForSeconds(timeBeforeLoad);
 
         Application.Quit();

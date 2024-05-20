@@ -4,8 +4,11 @@ public class AudioManager : MonoBehaviour
 {
     #region Variables
 
-    [Header("UI Sounds")]
-    [SerializeField] private AudioSource buttonSound;
+    [Header("UI SFX")]
+    [SerializeField] private AudioSource buttonSFX;
+
+    [Header("SFX")]
+    [SerializeField] private AudioSource glitchSFX;
 
     //Singleton.
     private static AudioManager _instance;
@@ -17,7 +20,11 @@ public class AudioManager : MonoBehaviour
     //Singleton.
     public static AudioManager Instance => _instance;
 
-    public AudioSource ButtonSound => buttonSound;
+    //UI SFX.
+    public AudioSource ButtonSFX => buttonSFX;
+
+    //SFX.
+    public AudioSource GlitchSFX => glitchSFX;
 
     #endregion
 
