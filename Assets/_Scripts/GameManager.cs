@@ -1,18 +1,50 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Variables
+
+    [Header("Manager")]
+    [SerializeField] private float timeBeforeLoad = 0.2f;
+
+    [Header("Scenes")]
+    [SerializeField] private GameObject mainMenu;
+
+    //Singleton.
+    private AudioManager _audioManager;
+
+    #endregion
+
+    #region Built-In Methods
+
+    private void Start()
     {
-        
+        //Singleton.
+        _audioManager = AudioManager.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    #endregion
+
+    #region Menu Manager
+
+    /**
+     * <summary>
+     * Button play load the waiting room.
+     * </summary>
+     */
+    public void LoadWaitingRoom()
     {
-        
+        StartCoroutine(DelayWaitingRoom());
     }
+
+    private IEnumerator DelayWaitingRoom()
+    {
+        _audioManager.ButtonSound.Play();
+        yield return new WaitForSeconds(timeBeforeLoad);
+
+        mainMenu.SetActive(false);
+    }
+
+    #endregion
 }
