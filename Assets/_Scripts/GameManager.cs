@@ -86,4 +86,28 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    #region Settings Manager
+
+    /**
+     * <summary>
+     * Button menu load menu scene.
+     * </summary>
+     */
+    public void LoadMenu()
+    {
+        StartCoroutine(DelayMenu());
+    }
+
+    private IEnumerator DelayMenu()
+    {
+        _audioManager.ButtonSFX.Play();
+        yield return new WaitForSeconds(timeBeforeLoad);
+
+        settings.SetActive(false);
+        mainMenu.SetActive(true);
+        _audioManager.GlitchSFX.Play();
+    }
+
+    #endregion
 }
