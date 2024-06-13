@@ -1,8 +1,18 @@
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     #region Variables
+
+    [Header("Audio Manager")]
+    [SerializeField] private AudioMixer audioMixer;
+
+    [Header("Sliders")]
+    [SerializeField] private Slider sliderMusic;
+    [SerializeField] private Slider sliderSFX;
+    [SerializeField] private Slider sliderGeneral;
 
     [Header("UI SFX")]
     [SerializeField] private AudioSource buttonSFX;
@@ -22,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
     //UI SFX.
     public AudioSource ButtonSFX => buttonSFX;
-
+    
     //SFX.
     public AudioSource GlitchSFX => glitchSFX;
 

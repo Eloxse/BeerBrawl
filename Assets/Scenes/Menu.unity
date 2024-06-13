@@ -1212,6 +1212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91c0b6da8582534888b0ca0ec5a55c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 2e1c00ed0f107804b8bcde2d743e7aa2, type: 2}
+  sliderMusic: {fileID: 356272174}
+  sliderSFX: {fileID: 2039776291}
+  sliderGeneral: {fileID: 1280461624}
   buttonSFX: {fileID: 684325924}
   glitchSFX: {fileID: 684325925}
 --- !u!1 &705507993
@@ -4103,7 +4107,7 @@ GameObject:
   - component: {fileID: 2039776290}
   - component: {fileID: 2039776291}
   m_Layer: 5
-  m_Name: SLIDER_FX
+  m_Name: SLIDER_SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
