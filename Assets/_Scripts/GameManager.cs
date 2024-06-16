@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("Scenes")]
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject levelSelection;
 
     //Singleton.
     private AudioManager _audioManager;
@@ -34,17 +35,18 @@ public class GameManager : MonoBehaviour
      * Button play load the waiting room.
      * </summary>
      */
-    public void LoadWaitingRoom()
+    public void LoadLevelSelection()
     {
-        StartCoroutine(DelayWaitingRoom());
+        StartCoroutine(DelayLevelSelection());
     }
 
-    private IEnumerator DelayWaitingRoom()
+    private IEnumerator DelayLevelSelection()
     {
         _audioManager.ButtonSFX.Play();
         yield return new WaitForSeconds(timeBeforeLoad);
 
         mainMenu.SetActive(false);
+        levelSelection.SetActive(true);
     }
 
     /**
