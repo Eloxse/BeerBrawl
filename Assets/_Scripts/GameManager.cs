@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Scenes")]
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject waitingRoom;
     [SerializeField] private GameObject levelSelection;
 
     //Singleton.
@@ -36,18 +37,18 @@ public class GameManager : MonoBehaviour
      * Button play load the waiting room.
      * </summary>
      */
-    public void LoadLevelSelection()
+    public void LoadWaitingRoom()
     {
-        StartCoroutine(DelayLevelSelection());
+        StartCoroutine(DelayWaitingRoom());
     }
 
-    private IEnumerator DelayLevelSelection()
+    private IEnumerator DelayWaitingRoom()
     {
         _audioManager.ButtonSFX.Play();
         yield return new WaitForSeconds(timeBeforeLoad);
 
         mainMenu.SetActive(false);
-        levelSelection.SetActive(true);
+        waitingRoom.SetActive(true);
     }
 
     /**
@@ -114,6 +115,48 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region Waiting Room
+
+    /**
+     * <summary>
+     * Go back to waiting room.
+     * </summary>
+     */
+    public void BackToMenu()
+    {
+        StartCoroutine(DelayBackToMenu());
+    }
+
+    private IEnumerator DelayBackToMenu()
+    {
+        _audioManager.ButtonSFX.Play();
+        yield return new WaitForSeconds(timeBeforeLoad);
+
+        waitingRoom.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
+    /**
+     * <summary>
+     * Load level selection.
+     * </summary>
+     */
+    public void LoadLevelSelection()
+    {
+        StartCoroutine(DelayLevelSelection());
+    }
+
+    private IEnumerator DelayLevelSelection()
+    {
+        _audioManager.ButtonSFX.Play();
+        yield return new WaitForSeconds(timeBeforeLoad);
+
+        waitingRoom.SetActive(false);
+        levelSelection.SetActive(true);
+    }
+
+    #endregion
+
     #region Level Selection
 
     /**
@@ -159,5 +202,25 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene("Bar", LoadSceneMode.Single);
     }
+
+    /**
+     * <summary>
+     * Go back to waiting room.
+     * </summary>
+     */
+    public void PreviousScene()
+    {
+        StartCoroutine(DelayPreviousScene());
+    }
+
+    private IEnumerator DelayPreviousScene()
+    {
+        _audioManager.ButtonSFX.Play();
+        yield return new WaitForSeconds(timeBeforeLoad);
+
+        levelSelection.SetActive(false);
+        waitingRoom.SetActive(true);
+    }
+
     #endregion
 }
