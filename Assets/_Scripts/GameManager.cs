@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -111,5 +112,52 @@ public class GameManager : MonoBehaviour
         _audioManager.GlitchSFX.Play();
     }
 
+    #endregion
+
+    #region Level Selection
+
+    /**
+     * <summary>
+     * These button load different games.
+     * </summary>
+     */
+    public void LoadDartsGame()
+    {
+        StartCoroutine(DelayDarts());
+    }
+
+    private IEnumerator DelayDarts()
+    {
+        _audioManager.ButtonSFX.Play();
+        yield return new WaitForSeconds(timeBeforeLoad);
+
+        SceneManager.LoadScene("Darts", LoadSceneMode.Single);
+    }
+
+    public void LoadPoolGame()
+    {
+        StartCoroutine(DelayPool());
+    }
+
+    private IEnumerator DelayPool()
+    {
+        _audioManager.ButtonSFX.Play();
+        yield return new WaitForSeconds(timeBeforeLoad);
+
+        SceneManager.LoadScene("Pool", LoadSceneMode.Single);
+    }
+
+    public void LoadBarGame()
+    {
+        StartCoroutine(DelayBar());
+    }
+
+    private IEnumerator DelayBar()
+    {
+        _audioManager.ButtonSFX.Play();
+        yield return new WaitForSeconds(timeBeforeLoad);
+
+        SceneManager.LoadScene("Bar", LoadSceneMode.Single);
+    }
     #endregion
 }
