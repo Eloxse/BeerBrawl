@@ -54,5 +54,99 @@ public class AudioManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        //Save player preferences.
+        VolumePreferences();
+    }
+
+    #endregion
+
+    #region Volume Settings
+
+    /**
+      * <summary>
+      * Access sounds volume through settings pannel.
+      * </summary>
+      */
+    public void SetGeneralVolume()
+    {
+        float volume = sliderGeneral.value;
+        audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("GeneralVolume", volume);
+    }
+
+    public void SetSFXVolume()
+    {
+        float volume = sliderSFX.value;
+        audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+    }
+
+    public void SetMusicVolume()
+    {
+        float volume = sliderMusic.value;
+        audioMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+    }
+
+    /**
+      * <summary>
+      * Save player preferences volume settings.
+      * </summary>
+      */
+    private void VolumePreferences()
+    {
+        if (PlayerPrefs.HasKey("GeneralVolume"))
+        {
+            LoadGeneralVolume();
+        }
+        else
+        {
+            SetGeneralVolume();
+        }
+
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            LoadSFXVolume();
+        }
+        else
+        {
+            SetSFXVolume();
+        }
+
+        if (PlayerPrefs.HasKey("MusicVolume"))
+        {
+            LoadMusicVolume();
+        }
+        else
+        {
+            SetMusicVolume();
+        }
+    }
+
+    /**
+      * <summary>
+      * Save volume value.
+      * </summary>
+      */
+    private void LoadGeneralVolume()
+    {
+        sliderGeneral.value = PlayerPrefs.GetFloat("GeneralVolume");
+        SetGeneralVolume();
+    }
+
+    private void LoadSFXVolume()
+    {
+        sliderSFX.value = PlayerPrefs.GetFloat("SFXVolume");
+        SetSFXVolume();
+    }
+
+    private void LoadMusicVolume()
+    {
+        sliderMusic.value = PlayerPrefs.GetFloat("MusicVolume");
+        SetMusicVolume();
+    }
+
     #endregion
 }
